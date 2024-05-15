@@ -1,9 +1,13 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET home page. */
+const Owner = require('../models/Owner.js');
+
+/* GET owners. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  Owner.getOwners().then(owners => {
+    res.json(owners);
+  });
 });
 
 module.exports = router;

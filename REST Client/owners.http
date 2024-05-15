@@ -1,0 +1,4 @@
+@baseUrl = http://localhost:3000
+
+### READ ALL OWNERS
+GET {{baseUrl}}/owners
