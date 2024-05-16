@@ -90,7 +90,7 @@ router.put("/:id", async function (req, res, next) {
       owner_id: req?.body?.owner_id !== undefined ? req.body.owner_id : pet.owner_id,
     };
 
-    const modifiedPet = await Pet.updateOneOwner(
+    const modifiedPet = await Pet.updatedOnePet(
       updatedPet
     );
     res.json(modifiedPet);

@@ -112,7 +112,7 @@ function deleteOnePet(id) {
   });
 }
 
-function updatedPet(updatedPet) {
+function updatedOnePet(updatedPet) {
   return new Promise((resolve, reject) => {
     db.run(
       `UPDATE pets SET name = ?, age = ?, species = ?, register_date = ?, owner_id = ? WHERE pet_id = ?`,
@@ -142,5 +142,5 @@ module.exports = {
   getOnePetWithOwner,
   addOnePet,
   deleteOnePet,
-  updatedPet,
+  updatedOnePet,
 };
