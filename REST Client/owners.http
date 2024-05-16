@@ -25,6 +25,6 @@ PUT {{baseUrl}}/owners/1
 Content-Type: application/json
 
 {
-    "name": "John Doe",
+    "name": "Jhuhu",
     "age": 30
 }

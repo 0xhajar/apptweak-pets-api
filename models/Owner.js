@@ -117,28 +117,29 @@ function deleteOneOwner(id) {
   });
 }
 
-function updateOneOwner(id, name, age, phone_number, address, register_date) {
+function updateOneOwner(updatedOwner) {
   return new Promise((resolve, reject) => {
-    getOneOwner(id).then((owner) => {
-      if (!owner) {
-        return reject(new Error("Owner not found"));
-      }
-
-      db.run(
-        `UPDATE owners SET name = ?, age = ?, phone_number = ?, address = ?, register_date = ? WHERE owner_id = ?`,
-        [name, age, phone_number, address, register_date, id],
-        function (err) {
-          if (err) {
-            console.error(err.message);
-            return reject(err);
-          }
-
-          getOneOwner(id).then((owner) => {
-            resolve(owner);
-          });
+    db.run(
+      `UPDATE owners SET name = ?, age = ?, phone_number = ?, address = ?, register_date = ? WHERE owner_id = ?`,
+      [
+        updatedOwner.name,
+        updatedOwner.age,
+        updatedOwner.phone_number,
+        updatedOwner.address,
+        updatedOwner.register_date,
+        updatedOwner.id,
+      ],
+      function (err) {
+        if (err) {
+          console.error(err.message);
+          return reject(err);
         }
-      );
-    });
+
+        getOneOwner(updatedOwner.id).then((owner) => {
+          resolve(owner);
+        });
+      }
+    );
   });
 }
 

@@ -29,7 +29,7 @@ router.get("/:id", async function (req, res, next) {
   }
 });
 
-/* POST one pet. */
+/* POST register one pet. */
 router.post("/", function (req, res, next) {
   const name = req?.body?.name?.length !== 0 ? req.body.name : undefined;
   const age = req?.body?.age > 0 ? req.body.age : undefined;
@@ -48,7 +48,7 @@ router.post("/", function (req, res, next) {
   });
 });
 
-/* DELETE one pet by his id. */
+/* DELETE delete one pet by his id. */
 router.delete("/:id", async function (req, res, next) {
   const id = req.params.id;
   if (!id) {
@@ -63,6 +63,37 @@ router.delete("/:id", async function (req, res, next) {
 
     const deletedPet = await Pet.deleteOnePet(id);
     res.json(deletedPet);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+/* PUT edit one pet by his id. */
+router.put("/:id", async function (req, res, next) {
+  const id = req.params.id;
+  if (!id) {
+    return res.status(400).json({ error: "Missing pet id" });
+  }
+
+  try {
+    const pet = await Pet.getOnePet(id);
+    if (!pet) {
+      return res.status(404).json({ error: "Pet not found" });
+    }
+
+    const updatedPet = {
+      id,
+      name: req?.body?.name !== undefined ? req.body.name : pet.name,
+      age: req?.body?.age !== undefined ? req.body.age : pet.age,
+      species: req?.body?.species !== undefined ? req.body.species : pet.species,
+      register_date: pet.register_date,
+      owner_id: req?.body?.owner_id !== undefined ? req.body.owner_id : pet.owner_id,
+    };
+
+    const modifiedPet = await Pet.updateOneOwner(
+      updatedPet
+    );
+    res.json(modifiedPet);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

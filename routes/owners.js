@@ -80,6 +80,7 @@ router.put("/:id", async function (req, res, next) {
     }
 
     const updatedOwner = {
+      id,
       name: req?.body?.name !== undefined ? req.body.name : owner.name,
       age: req?.body?.age !== undefined ? req.body.age : owner.age,
       phone_number:
@@ -92,12 +93,7 @@ router.put("/:id", async function (req, res, next) {
     };
 
     const modifiedOwner = await Owner.updateOneOwner(
-      id,
-      updatedOwner.name,
-      updatedOwner.age,
-      updatedOwner.phone_number,
-      updatedOwner.address,
-      updatedOwner.register_date
+      updatedOwner
     );
     res.json(modifiedOwner);
   } catch (error) {

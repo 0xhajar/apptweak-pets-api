@@ -3,10 +3,10 @@
 ### READ ALL PETS
 GET {{baseUrl}}/pets
 
-### READ ONE PET
+### READ ONE PET (with his owner's info)
 GET {{baseUrl}}/pets/2
 
-### CREATE PET
+### CREATE A PET
 POST {{baseUrl}}/pets
 Content-Type: application/json
 
@@ -17,7 +17,7 @@ Content-Type: application/json
   "owner_id": 1
 }
 
-### CREATE PET (with invalid owner_id)
+### CREATE A PET (with invalid owner_id)
 POST {{baseUrl}}/pets
 Content-Type: application/json
 
@@ -28,5 +28,15 @@ Content-Type: application/json
   "owner_id": 9
 }
 
-### DELETE PET
+### DELETE A PET
 DELETE {{baseUrl}}/pets/5
+
+### UPDATE A PET
+PUT {{baseUrl}}/pets/4
+Content-Type: application/json
+
+{
+  "name": "bobi",
+  "species": "dog",
+  "owner_id": 1
+}

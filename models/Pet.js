@@ -15,7 +15,7 @@ function getPets() {
 function getOnePet(id) {
   return new Promise((resolve, reject) => {
     const sql = `SELECT * FROM pets WHERE pet_id = ?`;
-    
+
     db.get(sql, [id], (err, row) => {
       if (err) {
         console.error(err.message);
@@ -53,8 +53,8 @@ function getOnePetWithOwner(id) {
               age: row.owner_age,
               phone_number: row.phone_number,
               address: row.address,
-              register_date: row.owner_register_date
-            }
+              register_date: row.owner_register_date,
+            },
           };
           resolve(petWithOwner);
         } else {
@@ -93,20 +93,45 @@ function addOnePet(name, age, species, owner_id) {
 
 function deleteOnePet(id) {
   return new Promise((resolve, reject) => {
-    getOnePet(id).then((pet) => {
-      if (!pet) {
-        return reject(new Error("Pet not found"));
-      }
-
-      db.run(`DELETE FROM pets WHERE pet_id = ?`, [id], function (err) {
-        if (err) {
-          console.error(err.message);
-          return reject(err);
+    getOnePet(id)
+      .then((pet) => {
+        if (!pet) {
+          return reject(new Error("Pet not found"));
         }
 
-        resolve(pet);
-      });
-    }).catch(reject);
+        db.run(`DELETE FROM pets WHERE pet_id = ?`, [id], function (err) {
+          if (err) {
+            console.error(err.message);
+            return reject(err);
+          }
+
+          resolve(pet);
+        });
+      })
+      .catch(reject);
+  });
+}
+
+function updateOneOwner(updatedOwner) {
+  return new Promise((resolve, reject) => {
+    db.run(
+      `UPDATE owners SET name = ?, age = ?, phone_number = ?, address = ? WHERE owner_id = ?`,
+      [
+        updatedOwner.name,
+        updatedOwner.age,
+        updatedOwner.phone_number,
+        updatedOwner.address,
+        updatedOwner.id,
+      ],
+      function (err) {
+        if (err) {
+          console.error(err.message);
+          reject(err);
+        } else {
+          resolve(updatedOwner);
+        }
+      }
+    );
   });
 }
 
@@ -116,4 +141,5 @@ module.exports = {
   getOnePetWithOwner,
   addOnePet,
   deleteOnePet,
+  updateOneOwner,
 };
