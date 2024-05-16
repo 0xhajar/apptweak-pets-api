@@ -5,3 +5,14 @@ GET {{baseUrl}}/pets
 
 ### READ ONE PET
 GET {{baseUrl}}/pets/1
+
+### CREATE PET
+POST {{baseUrl}}/pets
+Content-Type: application/json
+
+{
+  "name": "yuumi",
+  "species": "cat",
+  "age": 3,
+  "owner_id": 1
+}
