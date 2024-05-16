@@ -1,8 +1,8 @@
 ### ignore the node modules folder
 node_modules
 
-### ignore the config file
-config.js
+### ignore the .env file
+.env
 
 ### ignore the db
 identifier.sqlite
