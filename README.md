@@ -30,8 +30,7 @@ Follow these instructions to set up and run the project on your local machine.
 
 4. **Create the .env file**
 
-   In the root directory of the project, create a .env file and add an environment variable to specify the path to your SQLite database file, for example :
-   DB_PATH=./identifier.sqlite
+   Rename the .envexample file to .env and set the path to your db file.
 
 5. **Running the API**
 
