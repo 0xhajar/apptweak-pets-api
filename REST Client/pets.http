@@ -27,3 +27,6 @@ Content-Type: application/json
   "age": 3,
   "owner_id": 98991
 }
+
+### DELETE PET
+DELETE {{baseUrl}}/pets/8

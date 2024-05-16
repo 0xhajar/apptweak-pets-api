@@ -49,8 +49,21 @@ function addOnePet(name, age, species, owner_id) {
   });
 }
 
+function deleteOnePet(id) {
+  return new Promise((resolve, reject) => {
+    db.run(`DELETE FROM pets WHERE pet_id = ?`, [id], function (err) {
+      if (err) {
+        console.error(err.message);
+        reject(err);
+      }
+      resolve({ message: "Pet deleted" });
+    });
+  });
+}
+
 module.exports = {
   getPets,
   getOnePet,
   addOnePet,
+  deleteOnePet,
 };

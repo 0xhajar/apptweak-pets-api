@@ -41,4 +41,18 @@ router.post("/", function (req, res, next) {
   
 });
 
+/* DELETE one pet by his id. */
+router.delete("/:id", function (req, res, next) {
+  const id = req.params.id;
+  if (!id) return res.status(400).json({ error: "Missing pet id" });
+
+  Pet.getOnePet(id).then((pet) => {
+    if (!pet) return res.status(404).json({ error: "Pet not found" });
+    Pet.deleteOnePet(id).then((pet) => {
+      if (!pet) return res.status(500).json({ error: "Failed to delete the pet" });
+      res.json(pet);
+    });
+  });
+});
+
 module.exports = router;
