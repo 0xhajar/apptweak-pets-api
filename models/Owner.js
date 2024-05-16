@@ -1,4 +1,3 @@
-const { v4: uuidv4 } = require("uuid");
 const db = require("./db_conf");
 
 function getOwners() {
@@ -24,8 +23,36 @@ function getOneOwner(id) {
       (err, row) => {
         if (err) {
           console.error(err.message);
+          reject(err);
         }
         resolve(row);
+      }
+    );
+  });
+}
+
+function addOneOwner(name, age, phone_number, address) {
+  return new Promise((resolve, reject) => {
+    const register_date = new Date().toISOString().split('T')[0];
+    db.run(
+      `INSERT INTO owners (name, age, phone_number, address, register_date) VALUES (?, ?, ?, ?, ?)`,
+      [name, age, phone_number, address, register_date],
+      function(err) {
+        if (err) {
+          console.error(err.message);
+          reject(err);
+        } else {
+          const id = this.lastID;
+          db.get(`SELECT * FROM owners WHERE owner_id = ?`, [id], (err, row) => {
+            if (err) {
+              console.error(err.message);
+              reject(err);
+            } else {
+              console.log(row);
+              resolve(row);
+            }
+          });
+        }
       }
     );
   });
@@ -34,4 +61,5 @@ function getOneOwner(id) {
 module.exports = {
   getOwners,
   getOneOwner,
+  addOneOwner,
 };

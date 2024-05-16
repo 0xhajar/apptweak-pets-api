@@ -2,3 +2,6 @@
 
 ### READ ALL PETS
 GET {{baseUrl}}/pets
+
+### READ ONE PET
+GET {{baseUrl}}/pets/1

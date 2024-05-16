@@ -5,3 +5,14 @@ GET {{baseUrl}}/owners
 
 ### READ OWNER BY ID
 GET {{baseUrl}}/owners/1
+
+### CREATE OWNER
+POST {{baseUrl}}/owners
+Content-Type: application/json
+
+{
+    "name": "John Doe",
+    "age": 30,
+    "phone_number": "123-456-7890",
+    "address": "1234 Elm St"
+}

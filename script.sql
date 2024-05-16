@@ -5,8 +5,7 @@ CREATE TABLE owners (
     age INTEGER NOT NULL,
     phone_number TEXT NOT NULL,
     address TEXT NOT NULL,
-    register_date DATE NOT NULL,
-    favourite_food TEXT
+    register_date DATE NOT NULL
 );
 
 -- Create the pets table
