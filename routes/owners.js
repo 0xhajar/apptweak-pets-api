@@ -66,4 +66,43 @@ router.delete("/:id", async function (req, res, next) {
   }
 });
 
+/* PUT update one owner by his id. */
+router.put("/:id", async function (req, res, next) {
+  const id = req.params.id;
+  if (!id) {
+    return res.status(400).json({ error: "Missing owner id" });
+  }
+
+  try {
+    const owner = await Owner.getOneOwner(id);
+    if (!owner) {
+      return res.status(404).json({ error: "Owner not found" });
+    }
+
+    const updatedOwner = {
+      name: req?.body?.name !== undefined ? req.body.name : owner.name,
+      age: req?.body?.age !== undefined ? req.body.age : owner.age,
+      phone_number:
+        req?.body?.phone_number !== undefined
+          ? req.body.phone_number
+          : owner.phone_number,
+      address:
+        req?.body?.address !== undefined ? req.body.address : owner.address,
+      register_date: owner.register_date,
+    };
+
+    const modifiedOwner = await Owner.updateOneOwner(
+      id,
+      updatedOwner.name,
+      updatedOwner.age,
+      updatedOwner.phone_number,
+      updatedOwner.address,
+      updatedOwner.register_date
+    );
+    res.json(modifiedOwner);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 module.exports = router;

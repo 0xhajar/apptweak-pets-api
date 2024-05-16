@@ -67,7 +67,7 @@ function getOnePetWithOwner(id) {
 
 function addOnePet(name, age, species, owner_id) {
   return new Promise((resolve, reject) => {
-    const register_date = new Date().toISOString().split("T")[0];
+    const register_date = new Date().toLocaleDateString();
     db.run(
       `INSERT INTO pets (name, age, species, register_date, owner_id) VALUES (?, ?, ?, ?, ?)`,
       [name, age, species, register_date, owner_id],

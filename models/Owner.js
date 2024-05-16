@@ -70,7 +70,7 @@ function getOwnerWithPets(id) {
 
 function addOneOwner(name, age, phone_number, address) {
   return new Promise((resolve, reject) => {
-    const register_date = new Date().toISOString().split("T")[0];
+    const register_date = new Date().toLocaleDateString();
     db.run(
       `INSERT INTO owners (name, age, phone_number, address, register_date) VALUES (?, ?, ?, ?, ?)`,
       [name, age, phone_number, address, register_date],
@@ -117,10 +117,36 @@ function deleteOneOwner(id) {
   });
 }
 
+function updateOneOwner(id, name, age, phone_number, address, register_date) {
+  return new Promise((resolve, reject) => {
+    getOneOwner(id).then((owner) => {
+      if (!owner) {
+        return reject(new Error("Owner not found"));
+      }
+
+      db.run(
+        `UPDATE owners SET name = ?, age = ?, phone_number = ?, address = ?, register_date = ? WHERE owner_id = ?`,
+        [name, age, phone_number, address, register_date, id],
+        function (err) {
+          if (err) {
+            console.error(err.message);
+            return reject(err);
+          }
+
+          getOneOwner(id).then((owner) => {
+            resolve(owner);
+          });
+        }
+      );
+    });
+  });
+}
+
 module.exports = {
   getOwners,
   getOneOwner,
   getOwnerWithPets,
   addOneOwner,
   deleteOneOwner,
+  updateOneOwner,
 };
