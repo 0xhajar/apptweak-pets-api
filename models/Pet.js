@@ -112,23 +112,24 @@ function deleteOnePet(id) {
   });
 }
 
-function updateOneOwner(updatedOwner) {
+function updatedPet(updatedPet) {
   return new Promise((resolve, reject) => {
     db.run(
-      `UPDATE owners SET name = ?, age = ?, phone_number = ?, address = ? WHERE owner_id = ?`,
+      `UPDATE pets SET name = ?, age = ?, species = ?, register_date = ?, owner_id = ? WHERE pet_id = ?`,
       [
-        updatedOwner.name,
-        updatedOwner.age,
-        updatedOwner.phone_number,
-        updatedOwner.address,
-        updatedOwner.id,
+        updatedPet.name,
+        updatedPet.age,
+        updatedPet.species,
+        updatedPet.register_date,
+        updatedPet.owner_id,
+        updatedPet.id,
       ],
       function (err) {
         if (err) {
           console.error(err.message);
           reject(err);
         } else {
-          resolve(updatedOwner);
+          resolve(updatedPet);
         }
       }
     );
@@ -141,5 +142,5 @@ module.exports = {
   getOnePetWithOwner,
   addOnePet,
   deleteOnePet,
-  updateOneOwner,
+  updatedPet,
 };
