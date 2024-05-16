@@ -10,15 +10,22 @@ router.get("/", function (req, res, next) {
   });
 });
 
-/* GET one owner by his id. */
-router.get("/:id", function (req, res, next) {
-  if (!req.params.id)
+/* GET one owner by his id including his pets. */
+router.get("/:id", async function (req, res, next) {
+  const id = req.params.id;
+  if (!id) {
     return res.status(400).json({ error: "Missing owner id" });
+  }
 
-  Owner.getOneOwner(req.params.id).then((owner) => {
-    if (!owner) return res.status(404).json({ error: "Owner not found" });
-    return res.json(owner);
-  });
+  try {
+    const owner = await Owner.getOwnerWithPets(id);
+    if (!owner) {
+      return res.status(404).json({ error: "Owner not found" });
+    }
+    res.json(owner);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 });
 
 /* POST add one owner. */
@@ -40,18 +47,23 @@ router.post("/", function (req, res, next) {
 });
 
 /* DELETE one owner by his id. */
-router.delete("/:id", function (req, res, next) {
+router.delete("/:id", async function (req, res, next) {
   const id = req.params.id;
-  if (!id)
+  if (!id) {
     return res.status(400).json({ error: "Missing owner id" });
+  }
 
-  Owner.getOneOwner(id).then((owner) => {
-    if (!owner) return res.status(404).json({ error: "Owner not found" });
-    Owner.deleteOneOwner(id).then((owner) => {
-      if (!owner) return res.status(500).json({ error: "Failed to delete the owner" });
-      res.json(owner);
-    });
-  });
+  try {
+    const owner = await Owner.getOwnerWithPets(id);
+    if (!owner) {
+      return res.status(404).json({ error: "Owner not found" });
+    }
+
+    const result = await Owner.deleteOneOwner(id);
+    res.json(result);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 });
 
 module.exports = router;

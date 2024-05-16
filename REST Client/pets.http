@@ -22,10 +22,10 @@ POST {{baseUrl}}/pets
 Content-Type: application/json
 
 {
-  "name": "yuumi",
-  "species": "cat",
+  "name": "bobi",
+  "species": "dog",
   "age": 3,
-  "owner_id": 98991
+  "owner_id": 9
 }
 
 ### DELETE PET

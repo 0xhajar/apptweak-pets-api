@@ -4,7 +4,7 @@
 GET {{baseUrl}}/owners
 
 ### READ OWNER BY ID
-GET {{baseUrl}}/owners/1
+GET {{baseUrl}}/owners/9
 
 ### CREATE OWNER
 POST {{baseUrl}}/owners
@@ -18,4 +18,4 @@ Content-Type: application/json
 }
 
 ### DELETE OWNER
-DELETE {{baseUrl}}/owners/6
+DELETE {{baseUrl}}/owners/9
