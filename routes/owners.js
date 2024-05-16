@@ -29,7 +29,7 @@ router.post('/', function(req, res, next) {
 
   if(!name || !age || !phone_number || !address) return res.status(400).json({ error: 'Missing owner data' });
 
-  const addedOwner = Owner.addOneOwner (
+  Owner.addOneOwner (
     name,
     age,
     phone_number,
