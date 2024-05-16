@@ -16,6 +16,22 @@ function getOwners() {
     });
 }
 
+function getOneOwner(id) {
+  return new Promise((resolve, reject) => {
+    db.get(
+      `SELECT * FROM owners WHERE owner_id = ?`,
+      [id],
+      (err, row) => {
+        if (err) {
+          console.error(err.message);
+        }
+        resolve(row);
+      }
+    );
+  });
+}
+
 module.exports = {
   getOwners,
+  getOneOwner,
 };
