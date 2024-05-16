@@ -11,7 +11,7 @@ POST {{baseUrl}}/owners
 Content-Type: application/json
 
 {
-    "name": "Juju",
+    "name": "Lea Michele",
     "age": 30,
     "phone_number": "123-456-7890",
     "address": "1234 Elm St"
@@ -25,6 +25,6 @@ PUT {{baseUrl}}/owners/1
 Content-Type: application/json
 
 {
-    "name": "Jhuhu",
+    "name": "bob",
     "age": 30
 }
