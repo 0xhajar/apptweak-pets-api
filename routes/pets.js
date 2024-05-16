@@ -71,8 +71,8 @@ router.delete("/:id", async function (req, res, next) {
 /* PUT edit one pet by his id. */
 router.put("/:id", async function (req, res, next) {
   const id = req.params.id;
-  if (!id) {
-    return res.status(400).json({ error: "Missing pet id" });
+  if (!id || id <= 0) {
+    return res.status(400).json({ error: "Missing or wrong pet id" });
   }
 
   try {
@@ -82,7 +82,7 @@ router.put("/:id", async function (req, res, next) {
     }
 
     const updatedPet = {
-      id,
+      pet_id: id,
       name: req?.body?.name !== undefined ? req.body.name : pet.name,
       age: req?.body?.age !== undefined ? req.body.age : pet.age,
       species: req?.body?.species !== undefined ? req.body.species : pet.species,

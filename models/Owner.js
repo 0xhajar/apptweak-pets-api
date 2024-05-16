@@ -127,17 +127,14 @@ function updateOneOwner(updatedOwner) {
         updatedOwner.phone_number,
         updatedOwner.address,
         updatedOwner.register_date,
-        updatedOwner.id,
+        updatedOwner.owner_id,
       ],
       function (err) {
         if (err) {
           console.error(err.message);
           return reject(err);
         }
-
-        getOneOwner(updatedOwner.id).then((owner) => {
-          resolve(owner);
-        });
+        resolve(updatedOwner);
       }
     );
   });

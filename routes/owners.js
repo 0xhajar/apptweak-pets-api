@@ -69,8 +69,8 @@ router.delete("/:id", async function (req, res, next) {
 /* PUT update one owner by his id. */
 router.put("/:id", async function (req, res, next) {
   const id = req.params.id;
-  if (!id) {
-    return res.status(400).json({ error: "Missing owner id" });
+  if (!id || id <= 0) {
+    return res.status(400).json({ error: "Missing or wrong owner id" });
   }
 
   try {
@@ -80,7 +80,7 @@ router.put("/:id", async function (req, res, next) {
     }
 
     const updatedOwner = {
-      id,
+      owner_id: id,
       name: req?.body?.name !== undefined ? req.body.name : owner.name,
       age: req?.body?.age !== undefined ? req.body.age : owner.age,
       phone_number:

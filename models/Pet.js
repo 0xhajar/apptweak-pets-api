@@ -122,7 +122,7 @@ function updatedOnePet(updatedPet) {
         updatedPet.species,
         updatedPet.register_date,
         updatedPet.owner_id,
-        updatedPet.id,
+        updatedPet.pet_id,
       ],
       function (err) {
         if (err) {
