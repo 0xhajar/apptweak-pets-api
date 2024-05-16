@@ -1,4 +1,3 @@
-const { v4: uuidv4 } = require("uuid");
 const db = require("./db_conf");
 
 function getPets() {
@@ -36,18 +35,14 @@ function addOnePet(name, age, species, owner_id) {
           reject(err);
         } else {
           const id = this.lastID;
-          db.get(
-            `SELECT * FROM pets WHERE pet_id = ?`,
-            [id],
-            (err, row) => {
-              if (err) {
-                console.error(err.message);
-                reject(err);
-              } else {
-                resolve(row);
-              }
+          db.get(`SELECT * FROM pets WHERE pet_id = ?`, [id], (err, row) => {
+            if (err) {
+              console.error(err.message);
+              reject(err);
+            } else {
+              resolve(row);
             }
-          );
+          });
         }
       }
     );

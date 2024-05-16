@@ -2,6 +2,7 @@ var express = require("express");
 var router = express.Router();
 
 const Pet = require("../models/Pet.js");
+const Owner = require("../models/Owner.js");
 
 /* GET all pets. */
 router.get("/", function (req, res, next) {
@@ -27,14 +28,17 @@ router.post("/", function (req, res, next) {
   const species =
     req?.body?.species?.length !== 0 ? req.body.species : undefined;
   const owner_id = req?.body?.owner_id > 0 ? req.body.owner_id : undefined;
-
   if (!name || !age || !species || !owner_id)
     return res.status(400).json({ error: "Missing pet data" });
-
-  Pet.addOnePet(name, age, species, owner_id).then((pet) => {
-    if (!pet) return res.status(500).json({ error: "Failed to add pet" });
-    return res.json(pet);
+  
+  Owner.getOneOwner(owner_id).then((owner) => {
+    if (!owner) return res.status(404).json({ error: "Owner not found" });
+    Pet.addOnePet(name, age, species, owner_id).then((pet) => {
+      if (!pet) return res.status(500).json({ error: "Failed to add pet" });
+      res.json(pet);
+    });
   });
+  
 });
 
 module.exports = router;

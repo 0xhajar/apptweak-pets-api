@@ -6,7 +6,7 @@ const Owner = require("../models/Owner.js");
 /* GET all owners. */
 router.get("/", function (req, res, next) {
   Owner.getOwners().then((owners) => {
-    res.json(owners);
+    return res.json(owners);
   });
 });
 
@@ -17,7 +17,7 @@ router.get("/:id", function (req, res, next) {
 
   Owner.getOneOwner(req.params.id).then((owner) => {
     if (!owner) return res.status(404).json({ error: "Owner not found" });
-    res.json(owner);
+    return res.json(owner);
   });
 });
 
@@ -38,5 +38,7 @@ router.post("/", function (req, res, next) {
     return res.json(owner);
   });
 });
+
+
 
 module.exports = router;

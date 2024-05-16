@@ -16,3 +16,14 @@ Content-Type: application/json
   "age": 3,
   "owner_id": 1
 }
+
+### CREATE PET (with invalid owner_id)
+POST {{baseUrl}}/pets
+Content-Type: application/json
+
+{
+  "name": "yuumi",
+  "species": "cat",
+  "age": 3,
+  "owner_id": 98991
+}
