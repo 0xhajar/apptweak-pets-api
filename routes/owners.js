@@ -39,6 +39,19 @@ router.post("/", function (req, res, next) {
   });
 });
 
+/* DELETE one owner by his id. */
+router.delete("/:id", function (req, res, next) {
+  const id = req.params.id;
+  if (!id)
+    return res.status(400).json({ error: "Missing owner id" });
 
+  Owner.getOneOwner(id).then((owner) => {
+    if (!owner) return res.status(404).json({ error: "Owner not found" });
+    Owner.deleteOneOwner(id).then((owner) => {
+      if (!owner) return res.status(500).json({ error: "Failed to delete the owner" });
+      res.json(owner);
+    });
+  });
+});
 
 module.exports = router;

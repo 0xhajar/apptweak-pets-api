@@ -16,3 +16,6 @@ Content-Type: application/json
     "phone_number": "123-456-7890",
     "address": "1234 Elm St"
 }
+
+### DELETE OWNER
+DELETE {{baseUrl}}/owners/6

@@ -36,21 +36,24 @@ function addOneOwner(name, age, phone_number, address) {
           reject(err);
         } else {
           const id = this.lastID;
-          db.get(
-            `SELECT * FROM owners WHERE owner_id = ?`,
-            [id],
-            (err, row) => {
-              if (err) {
-                console.error(err.message);
-                reject(err);
-              } else {
-                resolve(row);
-              }
-            }
-          );
+          getOneOwner(id).then((owner) => {
+            resolve(owner);
+          });
         }
       }
     );
+  });
+}
+
+function deleteOneOwner(id) {
+  return new Promise((resolve, reject) => {
+    db.run(`DELETE FROM owners WHERE owner_id = ?`, [id], function (err) {
+      if (err) {
+        console.error(err.message);
+        reject(err);
+      }
+      resolve({ message: "Owner deleted"});
+    });
   });
 }
 
@@ -58,4 +61,5 @@ module.exports = {
   getOwners,
   getOneOwner,
   addOneOwner,
+  deleteOneOwner,
 };
