@@ -4,7 +4,7 @@ var router = express.Router();
 const Owner = require("../models/Owner.js");
 
 /* GET all owners. */
-router.get("/", function (req, res, next) {
+router.get("/", async function (req, res, next) {
   Owner.getOwners().then((owners) => {
     return res.json(owners);
   });
@@ -29,7 +29,7 @@ router.get("/:id", async function (req, res, next) {
 });
 
 /* POST add one owner. */
-router.post("/", function (req, res, next) {
+router.post("/", async function (req, res, next) {
   const name = req?.body?.name?.length !== 0 ? req.body.name : undefined;
   const age = req?.body?.age > 0 ? req.body.age : undefined;
   const phone_number =

@@ -5,7 +5,7 @@ const Pet = require("../models/Pet.js");
 const Owner = require("../models/Owner.js");
 
 /* GET all pets. */
-router.get("/", function (req, res, next) {
+router.get("/", async function (req, res, next) {
   Pet.getPets().then((pets) => {
     res.json(pets);
   });
@@ -30,7 +30,7 @@ router.get("/:id", async function (req, res, next) {
 });
 
 /* POST register one pet. */
-router.post("/", function (req, res, next) {
+router.post("/", async function (req, res, next) {
   const name = req?.body?.name?.length !== 0 ? req.body.name : undefined;
   const age = req?.body?.age > 0 ? req.body.age : undefined;
   const species =
