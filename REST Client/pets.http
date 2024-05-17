@@ -14,7 +14,7 @@ Content-Type: application/json
   "name": "yuumi",
   "species": "kitten",
   "age": 3,
-  "owner_id": 15
+  "owner_id": 2
 }
 
 ### DELETE A PET
@@ -27,5 +27,5 @@ Content-Type: application/json
 {
   "name": "yuumi",
   "species": "kitty",
-  "owner_id": 14
+  "owner_id": 2
 }
