@@ -4,7 +4,7 @@
 GET {{baseUrl}}/pets
 
 ### READ ONE PET (with his owner's info)
-GET {{baseUrl}}/pets/18
+GET {{baseUrl}}/pets/1
 
 ### INSERT A PET (associate it with an owner)
 POST {{baseUrl}}/pets
@@ -18,10 +18,10 @@ Content-Type: application/json
 }
 
 ### DELETE A PET
-DELETE {{baseUrl}}/pets/15
+DELETE {{baseUrl}}/pets/2
 
 ### UPDATE A PET
-PUT {{baseUrl}}/pets/18
+PUT {{baseUrl}}/pets/1
 Content-Type: application/json
 
 {
