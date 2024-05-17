@@ -29,12 +29,12 @@ function getOnePet(id) {
 
 function getOnePetWithOwner(id) {
   return new Promise((resolve, reject) => {
-    const sql = `
-      SELECT p.pet_id, p.name AS pet_name, p.age AS pet_age, p.species, p.register_date AS pet_register_date, 
-             o.owner_id, o.name AS owner_name, o.age AS owner_age, o.phone_number, o.address, o.register_date AS owner_register_date
-      FROM pets p
-      LEFT JOIN owners o ON p.owner_id = o.owner_id
-      WHERE p.pet_id = ?`;
+        const sql = `
+          SELECT p.pet_id, p.name AS pet_name, p.age AS pet_age, p.species, p.register_date AS pet_register_date, 
+            o.owner_id, o.name AS owner_name, o.age AS owner_age, o.phone_number, o.address, o.register_date AS owner_register_date
+          FROM pets p
+          INNER JOIN owners o ON p.owner_id = o.owner_id
+          WHERE p.pet_id = ?`;
     db.get(sql, [id], (err, row) => {
       if (err) {
         console.error(err.message);

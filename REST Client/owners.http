@@ -4,7 +4,7 @@
 GET {{baseUrl}}/owners
 
 ### READ OWNER BY ID
-GET {{baseUrl}}/owners/9
+GET {{baseUrl}}/owners/1
 
 ### CREATE OWNER
 POST {{baseUrl}}/owners
