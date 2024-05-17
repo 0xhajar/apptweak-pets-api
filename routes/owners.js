@@ -54,7 +54,7 @@ router.delete("/:id", async function (req, res, next) {
   }
 
   try {
-    const owner = await Owner.getOwnerWithPets(id);
+    const owner = await Owner.getOneOwner(id);
     if (!owner) {
       return res.status(404).json({ error: "Owner not found" });
     }
