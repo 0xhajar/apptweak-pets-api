@@ -18,7 +18,6 @@ Follow these instructions to set up and run the project on your local machine.
 
    ```bash
    git clone https://github.com/0xhajar/apptweak-pets-api.git
-   cd pet-management-api
 
 2. **Install the dependencies**
 
