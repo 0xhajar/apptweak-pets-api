@@ -91,12 +91,6 @@ function addOneOwner(name, age, phone_number, address) {
 
 function deleteOneOwner(id) {
   return new Promise((resolve, reject) => {
-    getOwnerWithPets(id)
-      .then((ownerData) => {
-        if (!ownerData) {
-          return reject(new Error("Owner not found"));
-        }
-
         db.run(`DELETE FROM pets WHERE owner_id = ?`, [id], function (err) {
           if (err) {
             console.error(err.message);
@@ -114,7 +108,6 @@ function deleteOneOwner(id) {
         });
       })
       .catch(reject);
-  });
 }
 
 function updateOneOwner(updatedOwner) {

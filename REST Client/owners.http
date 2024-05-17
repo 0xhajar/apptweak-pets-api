@@ -18,7 +18,7 @@ Content-Type: application/json
 }
 
 ### DELETE OWNER
-DELETE {{baseUrl}}/owners/9
+DELETE {{baseUrl}}/owners/11
 
 ### UPDATE OWNER
 PUT {{baseUrl}}/owners/1
