@@ -26,7 +26,7 @@ Follow these instructions to set up and run the project on your local machine.
 
 3. **Set up the database**
 
-   Run the SQL script located in the data folder to create the necessary tables.
+   The application automatically checks if the database file exists. If it does not, it creates the database and runs the necessary SQL script to set up the schema.
 
 4. **Create the .env file**
 
