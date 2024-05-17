@@ -3,28 +3,28 @@
 ### READ ALL OWNERS
 GET {{baseUrl}}/owners
 
-### READ OWNER BY ID
-GET {{baseUrl}}/owners/1
+### READ OWNER BY ID (and his pets)
+GET {{baseUrl}}/owners/2
 
 ### CREATE OWNER
 POST {{baseUrl}}/owners
 Content-Type: application/json
 
 {
-    "name": "Lea Michele",
-    "age": 30,
+    "name": "haj",
+    "age": 21,
     "phone_number": "123-456-7890",
-    "address": "1234 Elm St"
+    "address": "12 St"
 }
 
-### DELETE OWNER
-DELETE {{baseUrl}}/owners/11
+### DELETE OWNER (and his pets)
+DELETE {{baseUrl}}/owners/13
 
 ### UPDATE OWNER
-PUT {{baseUrl}}/owners/1
+PUT {{baseUrl}}/owners/2
 Content-Type: application/json
 
 {
-    "name": "haj",
-    "age": 30
+    "name": "hadje",
+    "age": 24
 }

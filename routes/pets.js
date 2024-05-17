@@ -56,11 +56,6 @@ router.delete("/:id", async function (req, res, next) {
   }
 
   try {
-    const pet = await Pet.getOnePet(id);
-    if (!pet) {
-      return res.status(404).json({ error: "Pet not found" });
-    }
-
     const deletedPet = await Pet.deleteOnePet(id);
     res.json(deletedPet);
   } catch (error) {
@@ -90,7 +85,7 @@ router.put("/:id", async function (req, res, next) {
       owner_id: req?.body?.owner_id !== undefined ? req.body.owner_id : pet.owner_id,
     };
 
-    const modifiedPet = await Pet.updatedOnePet(
+    const modifiedPet = await Pet.updateOnePet(
       updatedPet
     );
     res.json(modifiedPet);

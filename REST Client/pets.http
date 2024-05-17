@@ -4,39 +4,28 @@
 GET {{baseUrl}}/pets
 
 ### READ ONE PET (with his owner's info)
-GET {{baseUrl}}/pets/2
+GET {{baseUrl}}/pets/18
 
-### CREATE A PET
+### INSERT A PET (associate it with an owner)
 POST {{baseUrl}}/pets
 Content-Type: application/json
 
 {
   "name": "yuumi",
-  "species": "cat",
+  "species": "kitten",
   "age": 3,
-  "owner_id": 1
-}
-
-### CREATE A PET (with invalid owner_id)
-POST {{baseUrl}}/pets
-Content-Type: application/json
-
-{
-  "name": "bobi",
-  "species": "dog",
-  "age": 3,
-  "owner_id": 9
+  "owner_id": 15
 }
 
 ### DELETE A PET
-DELETE {{baseUrl}}/pets/5
+DELETE {{baseUrl}}/pets/15
 
 ### UPDATE A PET
-PUT {{baseUrl}}/pets/4
+PUT {{baseUrl}}/pets/18
 Content-Type: application/json
 
 {
-  "name": "bobi",
-  "species": "dog",
-  "owner_id": 1
+  "name": "yuumi",
+  "species": "kitty",
+  "owner_id": 14
 }
