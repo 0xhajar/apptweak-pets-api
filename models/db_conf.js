@@ -12,7 +12,7 @@ if (!dbExists) {
   db = new sqlite3.Database(dbPath);
 
   // Read the SQL file
-  const scriptSql = fs.readFileSync(path.resolve(__dirname, 'script.sql'), 'utf8');
+  const scriptSql = fs.readFileSync(path.resolve(__dirname,  '../data/script.sql'), 'utf8');
 
   // Execute the SQL script
   db.exec(scriptSql, (err) => {
