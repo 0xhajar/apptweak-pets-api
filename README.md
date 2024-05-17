@@ -45,13 +45,13 @@ Follow these instructions to set up and run the project on your local machine.
 | URI              | HTTP Method | Operation                              |
 |------------------|-------------|----------------------------------------|
 | **/owners**      | GET         | READ ALL : Get a list of all owners    |
-| **/owners/{id}** | GET         | READ ONE : Get details of a specific owner by ID (with all his pets' info) |
-| **/owners**      | POST        | CREATE ONE : Create a new owner        |
-| **/owners/{id}** | PUT         | UPDATE ONE : Update details of a specific owner by ID (and all his pets) |
-| **/owners/{id}** | DELETE      | DELETE ONE : Delete a specific owner by ID |
+| **/owners/{id}** | GET         | READ ONE : Get details of a specific owner by ID, with all his pets' info |
+| **/owners**      | POST        | INSERT ONE : Insert a new owner        |
+| **/owners/{id}** | PUT         | UPDATE ONE : Update details of a specific owner by ID, and all his pets |
+| **/owners/{id}** | DELETE      | DELETE ONE : Delete a specific owner by ID, and all his pets |
 | **/pets**        | GET         | READ ALL : Get a list of all pets      |
-| **/pets/{id}**   | GET         | READ ONE : Get details of a specific pet by ID (with his owner's info) |
-| **/pets**        | POST        | CREATE ONE : Create a new pet          |
+| **/pets/{id}**   | GET         | READ ONE : Get details of a specific pet by ID, with his owner's info |
+| **/pets**        | POST        | REGISTER ONE : Register a new pet, and associate it with its owner.         |
 | **/pets/{id}**   | PUT         | UPDATE ONE : Update details of a specific pet by ID |
 | **/pets/{id}**   | DELETE      | DELETE ONE : Delete a specific pet by ID |
 
