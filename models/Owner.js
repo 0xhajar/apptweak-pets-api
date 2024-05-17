@@ -1,4 +1,4 @@
-import db from "./db_conf";
+const db = require("./db_conf");
 
 async function getOwners() {
   try {
