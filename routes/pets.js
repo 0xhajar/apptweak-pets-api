@@ -56,6 +56,10 @@ router.delete("/:id", async function (req, res, next) {
   }
 
   try {
+    const pet = await Pet.getOnePet(id);
+    if (!pet) {
+      return res.status(404).json({ error: "Pet not found" });
+    }
     const deletedPet = await Pet.deleteOnePet(id);
     res.json(deletedPet);
   } catch (error) {
